@@ -5,12 +5,14 @@ import { UppdragComponent } from './uppdrag/uppdrag.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { KonsulterComponent } from './konsulter/konsulter.component';
 import { FrikodareComponent } from './frikodare/frikodare.component';
+import { SalaryComponent } from './salary/salary.component';
 
 const routes: Routes = [
     { path: '', component: IntroComponent, pathMatch: 'full' },
     { path: 'uppdrag', component: UppdragComponent, pathMatch: 'full' },
     { path: 'konsulter', component: KonsulterComponent, pathMatch: 'full' },
     { path: 'frikodare', component: FrikodareComponent, pathMatch: 'full' },
+    { path: 'lon', component: SalaryComponent, pathMatch: 'full' },
     { path: 'kontakt', component: KontaktComponent, pathMatch: 'full' },
 ];
 

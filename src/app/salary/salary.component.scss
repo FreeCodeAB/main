@@ -1,0 +1,43 @@
+$colorPrimary: #823a9c;
+$sliderSize: 1.5rem;
+
+.salary-tooltip {
+  color: white;
+  background-color: $colorPrimary;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  width: 50px;
+  transform: translateX(-50%);
+  position: absolute;
+  top: $sliderSize * -1.5;
+}
+
+.salary-slider {
+  width: 100%;
+  height: $sliderSize;
+  
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    background-color: $colorPrimary;
+    height: $sliderSize;
+    width: $sliderSize;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, .5));
+    position: relative;
+  }
+
+  &::-moz-range-track {
+    background-color: gray;
+    border-radius: 5px;
+    height: 10px;
+  }
+
+  &::-moz-range-progress {
+    background-color: $colorPrimary;
+    border-radius: 5px;
+    height: 10px;
+  }
+}

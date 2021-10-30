@@ -11,6 +11,7 @@ import { KontaktComponent } from './kontakt/kontakt.component';
 import { KonsulterComponent } from './konsulter/konsulter.component';
 import { FrikodareComponent } from './frikodare/frikodare.component';
 import { SeparatorComponent } from './separator/separator.component';
+import { SalaryComponent } from './salary/salary.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SeparatorComponent } from './separator/separator.component';
     FrikodareComponent,
     KontaktComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SalaryComponent
   ],
   imports: [
     BrowserModule,

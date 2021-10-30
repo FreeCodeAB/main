@@ -1,0 +1,18 @@
+<div class="top">
+  Lön
+</div>
+
+<app-separator></app-separator>
+
+<div class="white-block">
+  <h2 class="mg-b">Timtaxa</h2>
+  <div class="relative">
+    <div class="salary-tooltip" [ngStyle]="{'left': ratePercent + '%'}">{{hourlyRate}}</div>
+    <input type="range" id="rangeSlider" class="salary-slider" value="{{initialSalary}}" min="600" max="1200" step="100" (input)="onChangeEvent($event)">
+  </div>
+  <div class="flex justify-between">
+    <h3 class="mt-0">600</h3>
+    <h3 class="mt-0">1200</h3>
+  </div>
+  <h2>Din lön: {{yourSalary}}</h2>
+</div>
