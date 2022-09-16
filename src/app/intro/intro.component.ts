@@ -8,6 +8,8 @@ import { Mesh } from '@babylonjs/core/Meshes/mesh';
 import '@babylonjs/loaders/glTF';
 import '@babylonjs/core/Debug/debugLayer';
 import '@babylonjs/inspector';
+// import * as Ammo from 'ammo.js';
+// import { Ammo } from 'ammo.js';
 
 @Component({
     selector: 'app-intro',
@@ -31,6 +33,11 @@ export class IntroComponent implements OnInit {
         this.scene = new Scene(this.engine);
         this.scene.clearColor = new Color4(1, 1, 1);
 
+        // Physics
+        // await Ammo();
+        // this.scene.enablePhysics(new Vector3(0, -10, 0), new AmmoJSPlugin());
+
+        // Camera
         this.camera = this.setupCamera();
 
         // Environment Texture
@@ -48,13 +55,11 @@ export class IntroComponent implements OnInit {
         this.setupShaders();
         this.setupParticleSystem();
 
-        // Physics
-        this.scene.enablePhysics(new Vector3(0, -10, 0), new AmmoJSPlugin());
 
-        const groundCollider = Mesh.CreateGround('groundCollider', 80, 80, 2, this.scene);
-        groundCollider.checkCollisions = true;
-        groundCollider.isVisible = false;
-        groundCollider.physicsImpostor = new PhysicsImpostor(groundCollider, PhysicsImpostor.BoxImpostor, { mass: 0, friction: 1 }, this.scene);
+        // const groundCollider = Mesh.CreateGround('groundCollider', 80, 80, 2, this.scene);
+        // groundCollider.checkCollisions = true;
+        // groundCollider.isVisible = false;
+        // groundCollider.physicsImpostor = new PhysicsImpostor(groundCollider, PhysicsImpostor.BoxImpostor, { mass: 0, friction: 1 }, this.scene);
 
         // create a box used to trigger the destrucion of marbles
         const killBox = MeshBuilder.CreateBox('killBox', { width: 1000, depth: 1000, height: 0.5 }, this.scene);
@@ -73,7 +78,7 @@ export class IntroComponent implements OnInit {
         freeCodeLogo.material = plasticMat;
         freeCodeLogo.scaling = new Vector3(0.3, 0.3, 0.3);
         freeCodeLogo.position = new Vector3(4, 2.5, 0);
-        freeCodeLogo.physicsImpostor = new PhysicsImpostor(freeCodeLogo, PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 1.5 }, this.scene);
+        // freeCodeLogo.physicsImpostor = new PhysicsImpostor(freeCodeLogo, PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 1.5 }, this.scene);
         shadowGenerator.addShadowCaster(freeCodeLogo);
 
         this.setupTextMeshes(shadowGenerator, plasticMat, killBox);
@@ -100,7 +105,7 @@ export class IntroComponent implements OnInit {
         skybox.primaryColorShadowLevel = 1;
 
         // POINTER EVENTS
-        this.setupPointerEvents();
+        // this.setupPointerEvents();
 
         this.updateCameraFocus();
 
@@ -249,37 +254,38 @@ export class IntroComponent implements OnInit {
     private setupTextMeshes(shadowGenerator, plasticMat, killBox) {
         // Freecode text
         let textF = this.scene.getMeshByName('f');
-        textF = this.generateTextSettings(textF, 0, shadowGenerator, plasticMat, killBox);
+        textF = this.generateTextSettings(textF, 0, 2.4, shadowGenerator, plasticMat, killBox);
 
         let textR = this.scene.getMeshByName('r');
-        textR = this.generateTextSettings(textR, -2, shadowGenerator, plasticMat, killBox);
+        textR = this.generateTextSettings(textR, -1.8, 2.1, shadowGenerator, plasticMat, killBox);
 
         let textE1 = this.scene.getMeshByName('e1');
-        textE1 = this.generateTextSettings(textE1, -4, shadowGenerator, plasticMat, killBox);
+        textE1 = this.generateTextSettings(textE1, -3.8, 2.1, shadowGenerator, plasticMat, killBox);
 
         let textE2 = this.scene.getMeshByName('e2');
-        textE2 = this.generateTextSettings(textE2, -7, shadowGenerator, plasticMat, killBox);
+        textE2 = this.generateTextSettings(textE2, -5.8, 2.1, shadowGenerator, plasticMat, killBox);
 
         let textC = this.scene.getMeshByName('c');
-        textC = this.generateTextSettings(textC, -9, shadowGenerator, plasticMat, killBox);
+        textC = this.generateTextSettings(textC, -7.6, 2.1, shadowGenerator, plasticMat, killBox);
 
         let textO = this.scene.getMeshByName('o');
-        textO = this.generateTextSettings(textO, -11, shadowGenerator, plasticMat, killBox);
+        textO = this.generateTextSettings(textO, -9.7, 2.1, shadowGenerator, plasticMat, killBox);
 
         let textD = this.scene.getMeshByName('d');
-        textD = this.generateTextSettings(textD, -13.6, shadowGenerator, plasticMat, killBox);
+        textD = this.generateTextSettings(textD, -12.1, 2.4, shadowGenerator, plasticMat, killBox);
 
         let textE3 = this.scene.getMeshByName('e3');
-        textE3 = this.generateTextSettings(textE3, -16, shadowGenerator, plasticMat, killBox);
+        textE3 = this.generateTextSettings(textE3, -14.2, 2.1, shadowGenerator, plasticMat, killBox);
     }
 
-    private generateTextSettings(textObject, posOffset, shadowGenerator, material, killBox) {
+    private generateTextSettings(textObject, posOffset, yOffset, shadowGenerator, material, killBox) {
         textObject.setParent(null);
         textObject.material = material;
         textObject.scaling = new Vector3(4, 4, 4);
-        const randomHeight = Math.floor(Math.random() * (20 - 10)) + 10;
-        textObject.position = new Vector3(posOffset, randomHeight, 0);
-        textObject.physicsImpostor = new PhysicsImpostor(textObject, PhysicsImpostor.BoxImpostor, { mass: 1, friction: 0.2, restitution: 1.5 }, this.scene);
+        // const randomHeight = Math.floor(Math.random() * (20 - 10)) + 10;
+        textObject.position = new Vector3(posOffset, yOffset, 0);
+        // textObject.position = new Vector3(posOffset, randomHeight, 0);
+        // textObject.physicsImpostor = new PhysicsImpostor(textObject, PhysicsImpostor.BoxImpostor, { mass: 1, friction: 0.2, restitution: 1.5 }, this.scene);
         shadowGenerator.addShadowCaster(textObject);
 
         textObject.actionManager = new ActionManager(this.scene); // add an actionManager to the textObject
@@ -290,8 +296,8 @@ export class IntroComponent implements OnInit {
                 () => {
                     const randomPos = Math.floor(Math.random() * (0 - -15)) + -15;
                     textObject.position = new Vector3(randomPos, 15, 3);
-                    textObject.physicsImpostor.setLinearVelocity(new Vector3(0, 0, 0));
-                    textObject.physicsImpostor.setAngularVelocity(new Vector3(0, 0, 0));
+                    // textObject.physicsImpostor.setLinearVelocity(new Vector3(0, 0, 0));
+                    // textObject.physicsImpostor.setAngularVelocity(new Vector3(0, 0, 0));
                 })
         );
 
@@ -322,14 +328,14 @@ export class IntroComponent implements OnInit {
 
     private updateCameraFocus(): void {
         if (this.camera) {
-            if (window.innerWidth <= 640) {
-                this.camera.target.z = -5;
-                this.camera.target.y = 2;
-            }
-            else {
-                this.camera.target.z = -18;
-                this.camera.target.y = -2;
-            }
+            // if (window.innerWidth <= 640) {
+            //     this.camera.target.z = -10;
+            //     this.camera.target.y = 2;
+            // }
+            // else {
+                this.camera.target.z = -25;
+                this.camera.target.y = -3.5;
+            // }
         }
     }
 }

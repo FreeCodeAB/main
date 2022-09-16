@@ -1,6 +1,7 @@
 #renderCanvas {
   width: 100%;
-  min-height: 300px;
+  min-height: 200px;
+  max-height: 500px;
   touch-action: none;
   background-image: radial-gradient(ellipse farthest-corner at center bottom, #A458C4 0%, #25132E 100%);
 }

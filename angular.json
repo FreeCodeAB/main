@@ -46,7 +46,6 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/ammo.js/builds/ammo.js",
               "./node_modules/jquery.pep.js/src/jquery.pep.js"
             ]
           },
