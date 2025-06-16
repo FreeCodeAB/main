@@ -2,17 +2,3 @@
 header("Location: https://biolit.se");
 exit;
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-  <meta http-equiv="refresh" content="0; url=https://biolit.se">
-  <meta charset="utf-8">
-  <title>Freecode</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
-</html>
