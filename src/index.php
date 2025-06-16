@@ -1,3 +1,7 @@
+<?php
+header("Location: https://biolit.se");
+exit;
+?>
 <!doctype html>
 <html lang="en">
 <head>
